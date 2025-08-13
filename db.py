@@ -24,7 +24,6 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-mycursor.execute("CREATE TABLE IF NOT EXISTS players (name VARCHAR(255), uuid VARCHAR(255), time_played INT(11))")     
 #adds Item
 def insert_item(barcode, name, notes=None, sold=False):
 
