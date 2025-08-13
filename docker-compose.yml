@@ -8,8 +8,3 @@ services:
       MYSQL_ROOT_PASSWORD: example
     ports:
       - "3306:3306"  # Maps port 3306 on the host to port 3306 in the container
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 9080:9080
