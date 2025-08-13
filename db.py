@@ -25,7 +25,7 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 
 mycursor.execute("CREATE TABLE IF NOT EXISTS players (name VARCHAR(255), uuid VARCHAR(255), time_played INT(11))")     
-
+#adds Item
 def insert_item(barcode, name, notes=None, sold=False):
 
   sql = """
@@ -36,3 +36,13 @@ def insert_item(barcode, name, notes=None, sold=False):
   mycursor.execute(sql, values)
   mydb.commit()
   print(f'|DB| added {name} to db')
+#finds item
+def lookup_item(barcode):
+
+  sql = "SELECT * FROM items WHERE barcode = %s"
+  mycursor.execute(sql, (barcode,))
+  myresult = mycursor.fetchall()
+
+  #remove tuples
+  pl = list(sum(myresult, ()))
+  return myresult
