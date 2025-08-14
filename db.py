@@ -24,7 +24,7 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-#adds Item
+# adds Item
 def insert_item(barcode, name, notes=None, sold=False):
 
   sql = """
@@ -35,13 +35,25 @@ def insert_item(barcode, name, notes=None, sold=False):
   mycursor.execute(sql, values)
   mydb.commit()
   print(f'|DB| added {name} to db')
-#finds item
+
+# finds item
 def lookup_item(barcode):
 
   sql = "SELECT * FROM items WHERE barcode = %s"
   mycursor.execute(sql, (barcode,))
   myresult = mycursor.fetchall()
 
-  #remove tuples
-  pl = list(sum(myresult, ()))
+
   return myresult
+
+# deletes item by barcode
+def delete_item(barcode):
+
+  sql = "DELETE FROM items WHERE barcode = %s"
+  mycursor.execute(sql, (barcode,))
+
+
+#im to lazy to implment this
+def edit_item(barcode):
+  sql = "DELETE FROM items WHERE barcode = %s"
+  mycursor.execute(sql, (barcode,))
