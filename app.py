@@ -1,4 +1,4 @@
-# main.py 
+# app.py 
 # applaction loop will be written here
 import db
 from flask import Flask
