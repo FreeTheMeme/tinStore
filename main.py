@@ -14,19 +14,21 @@ def add_barcode():
 def lookup_barcode():
     print('enter barcode')
     cli_barcode_l = input()
-    print(db.lookup_item())
-
+    print(db.lookup_item(cli_barcode_l))
+def gen_and_print():
+    print('generate and print barcode')
 
 
 print('=====TinStore CLI v0.1=====')
 
 running = True
 # opt sector
-while running == True:
+while running:
     print('plese chouse and option')
     print("""
-    \t 1 add item and print
+    \t 1 add item 
     \t 2 lookup item
+    \t 3 generate barcode and print
     \t 0 quit
     """)
     print('enter a number')
@@ -38,6 +40,9 @@ while running == True:
     elif int(option) == 2:
         print('look up item')
         lookup_barcode()
+    elif int(option) == 3:
+        print('generate and print barcode')
+        gen_and_print()
     elif int(option) == 0:
         print('quit bye')
         running = False
@@ -46,5 +51,4 @@ while running == True:
     else:
         print('not an option')
     option = 99
-print(running)
 
