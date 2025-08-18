@@ -7,9 +7,9 @@ import subprocess
 import random
 import db
 
-def Generate_barcode():
-    # Generate a random 12-digit number
-    barcode_number = random.randrange(10**11, 10**12)
+def Generate_barcode(digit):
+    # Generate a random nth-digit number
+    barcode_number = random.randrange(10**digit-1, 10**digit)
 
     # if database returns nothing return barcode
     is_in_db = True
@@ -23,6 +23,7 @@ def Generate_barcode():
 
 def print_barcode(barcode,name):
     printer_name = "ZD420"  # CUPS name
+    # Data to send to printer
     zpl_data = """
     ^XA
     ^FO35,30
@@ -38,6 +39,7 @@ def print_barcode(barcode,name):
     # Save ZPL to a temporary file
     with open("temp_label_file.zpl", "w") as f:
         f.write(zpl_data)
+        f.flush()
 
     # Use subprocess to send the job
     subprocess.run(["lp", "-d", printer_name, "-o", "raw", "temp_label_file.zpl"])
