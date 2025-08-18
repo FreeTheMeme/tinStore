@@ -50,13 +50,14 @@ def print_barcode_1_5in(barcode,name):
     # Data to send to printer
     zpl_data = """
     ^XA
-    ^FO35,30
-    ^AE,20,10
+    ^FO10,30
+    ^AE,30,15
     ^FD"""+name+"""^FS
-    ^FO35,70
+    ^FO10,70
     ^BY2
     ^BCN,100,Y,N,Y
     ^FD"""+str(barcode)+"""^FS
+    ^FO200,60^BQN,2,4^FDQ,"""+str(barcode)+"""^FS 
     ^XZ
     """
 
