@@ -10,4 +10,3 @@ data = db.all_items()
 @app.route("/")
 def hello_world():
     return render_template('table.html',headings=headings,data=data)
-
