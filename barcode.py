@@ -45,7 +45,7 @@ def print_barcode(barcode,name):
     subprocess.run(["lp", "-d", printer_name, "-o", "raw", "temp_label_file.zpl"])
 
 
-def print_barcode(barcode,name):
+def print_barcode_1_5in(barcode,name):
     printer_name = "ZD420"  # CUPS name
     # Data to send to printer
     zpl_data = """

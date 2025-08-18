@@ -11,16 +11,6 @@ def add_barcode():
     # Insert the item into the database with a description of how it was added.
     db.insert_item(cli_barcode, cli_name, 'added with cli')
 
-def add_barcode():
-    cli_name = input('enter name: ')
-    cli_barcode = input('scan barcode or enter manuly: ')
-    print(f'adding {cli_name} \nwith barcode:{cli_barcode} ')
-    db.insert_item(cli_barcode,cli_name,'added with cli')
-    ans = input('print y/n')
-    if ans == lower('y'):
-        barcode.print_barcode(cli_barcode,cli_name)
-    else:
-        break
 
 def lookup_barcode():
     print('Enter barcode')
@@ -29,8 +19,21 @@ def lookup_barcode():
     
 # Function to generate and print a barcode using the 'Generate_barcode' function from the 'barcode' module.
 def gen_and_print():
-    print('Generate and print barcode')
-    barcode.Generate_barcode(12)
+    pr_loop = True
+    while pr_loop:
+        cli_name = input('enter name: ')
+        cli_barcode = barcode.Generate_barcode(12)
+
+        print('barcode is: '+ str(cli_barcode))
+        barcode.print_barcode(cli_barcode,cli_name)
+        db.insert_item(cli_barcode,cli_name)
+        ans = input('go again? Y/N')
+        if ans.lower == 'n':
+            print('exit')
+            pr_loop = False
+
+
+
 
 print('=====TinStore CLI v0.1=====')
 
