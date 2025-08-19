@@ -10,26 +10,26 @@ import db
 def Generate_barcode(digit):
     # Generate a random nth-digit number
     barcode_number = random.randrange(10**digit-1, 10**digit)
-
+    return barcode_number
     # if database returns nothing return barcode
-    is_in_db = True
-    while(is_in_db):
-        if len(db.lookup_item(barcode_number)) == 0:
-            print("|BC| The item is not in the database.")
-            is_in_db = False
-            return barcode_number
-        else:
-            print("|BC| The item is in the database.")
+    # is_in_db = True
+    # while(is_in_db):
+    #     if len(db.lookup_item(barcode_number)) == 0:
+    #         print("|BC| The item is not in the database.")
+    #         is_in_db = False
+    #         return barcode_number
+    #     else:
+    #         print("|BC| The item is in the database.")
 
 def print_barcode(barcode,name):
     printer_name = "ZD420"  # CUPS name
     # Data to send to printer
     zpl_data = """
     ^XA
-    ^FO35,30
+    ^FO288,5
     ^AE,20,10
     ^FD"""+name+"""^FS
-    ^FO35,70
+    ^FO288,45
     ^BY2
     ^BCN,100,Y,N,Y
     ^FD"""+str(barcode)+"""^FS
