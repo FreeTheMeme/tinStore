@@ -20,17 +20,14 @@ def lookup_barcode():
 # Function to generate and print a barcode using the 'Generate_barcode' function from the 'barcode' module.
 def gen_and_print():
     pr_loop = True
-    while pr_loop:
-        cli_name = input('enter name: ')
-        cli_barcode = barcode.Generate_barcode(12)
 
-        print('barcode is: '+ str(cli_barcode))
-        barcode.print_barcode(cli_barcode,cli_name)
-        db.insert_item(cli_barcode,cli_name)
-        ans = input('go again? Y/N')
-        if ans.lower == 'n':
-            print('exit')
-            pr_loop = False
+    cli_name = input('enter name: ')
+    cli_barcode = barcode.Generate_barcode()
+
+    print('barcode is: '+ str(cli_barcode))
+    barcode.print_barcode(cli_barcode,cli_name)
+        # db.insert_item(cli_barcode,cli_name)
+
 
 
 

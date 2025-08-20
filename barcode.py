@@ -7,9 +7,9 @@ import subprocess
 import random
 import db
 
-def Generate_barcode(digit):
+def Generate_barcode():
     # Generate a random nth-digit number
-    barcode_number = random.randrange(10**digit-1, 10**digit)
+    barcode_number = random.randrange(10**7, 10**8)
     return barcode_number
     # if database returns nothing return barcode
     # is_in_db = True
@@ -26,7 +26,7 @@ def print_barcode(barcode,name):
     # Data to send to printer
     zpl_data = """
     ^XA
-    ^FO288,5
+    ^FO288,0
     ^AE,20,10
     ^FD"""+name+"""^FS
     ^FO288,45
