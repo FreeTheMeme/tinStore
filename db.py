@@ -28,7 +28,7 @@ mydb = mysql.connector.connect(
   database="tinstore",
 )
 
-mycursor = mydb.cursor()
+mycursor = mydb.cursor(dictionary=True)
 
 # adds Item
 def insert_item(barcode, name, notes=None, sold=False):

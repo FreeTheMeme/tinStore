@@ -2,12 +2,12 @@
 ^XA
 ^FO288,0
 ^AE,20,10
-^FDDatabase  ^FS
+^FDWeeb Lamp  ^FS
 ^FO288,30
 ^AE,20,10
-^FDPrinciples^FS
+^FD8-25-25^FS
 ^FO288,65^GB270,3,3^FS
 ^FO288,75
 ^AE,60,30
-^FDCIS 282^FS
+^FD WEEB ^FS
 ^XZ

@@ -6,14 +6,14 @@ zpl_data = """
 ^XA
 ^FO288,0
 ^AE,20,10
-^FDline 1  ^FS
+^FDWeeb Lamp  ^FS
 ^FO288,30
 ^AE,20,10
-^FDline 2^FS
+^FD8-25-25^FS
 ^FO288,65^GB270,3,3^FS
 ^FO288,75
 ^AE,60,30
-^FD BIG TEXT ^FS
+^FD WEEB ^FS
 ^XZ
 """
 
