@@ -2,7 +2,6 @@
 # any data base comands will be put here
 #
 import mysql.connector
-import texttable
 #TABLES
 # ============ITEMS=============
 # +------------+--------------+------+-----+-------------------+-------------------+
