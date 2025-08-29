@@ -42,7 +42,7 @@ def get_item(item_id):
 # DELETE a item
 @app.route('/items/<int:item_id>', methods=['DELETE'])
 def delete_item(item_id):
-    # db.delete_item(item_id)
+    db.delete_item(item_id)
 
     return jsonify({'result': True, 'message': f'item with ID {item_id} has been deleted.'})
 
