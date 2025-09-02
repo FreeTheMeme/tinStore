@@ -11,15 +11,7 @@ def Generate_barcode():
     # Generate a random nth-digit number
     barcode_number = random.randrange(10**7, 10**8)
     return barcode_number
-    # if database returns nothing return barcode
-    # is_in_db = True
-    # while(is_in_db):
-    #     if len(db.lookup_item(barcode_number)) == 0:
-    #         print("|BC| The item is not in the database.")
-    #         is_in_db = False
-    #         return barcode_number
-    #     else:
-    #         print("|BC| The item is in the database.")
+
 
 def print_barcode(barcode,name):
     printer_name = "ZD420"  # CUPS name
@@ -30,9 +22,7 @@ def print_barcode(barcode,name):
     ^AE,20,10
     ^FD"""+name+"""^FS
     ^FO288,45
-    ^BY2
-    ^BCN,100,Y,N,Y
-    ^FD"""+str(barcode)+"""^FS
+    ^FO288,50^BQN,2,5^FD"""+str(barcode)+"""^FS
     ^XZ
     """
 

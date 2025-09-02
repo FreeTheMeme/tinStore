@@ -46,8 +46,10 @@ def delete_item(item_id):
 
     return jsonify({'result': True, 'message': f'item with ID {item_id} has been deleted.'})
 
-
-
+# print lable for item
+@app.route('/print<int:item_id>', methods=['GET'])
+def index():
+    return jsonify({'message': 'Printed'})
 
 
 
