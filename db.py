@@ -41,6 +41,7 @@ def insert_item(item):
   mydb.commit()
   print(f'|DB| added {name} to db')
 
+
 # finds item
 def lookup_item(barcode):
 
@@ -50,6 +51,8 @@ def lookup_item(barcode):
 
 
   return myresult
+
+
 # return all items
 def all_items():
 
@@ -58,6 +61,8 @@ def all_items():
   myresult = mycursor.fetchall()
 
   return myresult
+
+
 # deletes item by barcode
 def delete_item(barcode):
 
