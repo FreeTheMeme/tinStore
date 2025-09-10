@@ -23,8 +23,17 @@ app = Flask(__name__)
 def index():
     return jsonify({'message': 'Welcome to the Flask REST API!'})
 
-    # Endpoint to retrieve the list of all items.
+# Create a new item.
+@app.route('/items', methods=['POST'])
+def create_item():
+    # request.json contains the JSON data sent with the POST request.
+    item_data = request.json
+    db.insert_item(item_data)
 
+    # Return a JSON response with the newly created item and a 201 status code (Created).
+    return jsonify({'item': item_data}), 201
+
+#Retrieve the list of all items.
 @app.route('/items', methods=['GET'])
 def get_items():
 
@@ -46,10 +55,10 @@ def delete_item(item_id):
 
     return jsonify({'result': True, 'message': f'item with ID {item_id} has been deleted.'})
 
-# print lable for item
-@app.route('/print<int:item_id>', methods=['GET'])
-def index():
-    return jsonify({'message': 'Printed'})
+# # print lable for item
+# @app.route('/print<int:item_id>', methods=['GET'])
+# def index():
+#     return jsonify({'message': 'Printed'})
 
 
 
