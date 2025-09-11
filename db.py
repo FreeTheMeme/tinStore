@@ -30,16 +30,17 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor(dictionary=True)
 
 # adds Item
-def insert_item(barcode, name, notes=None, sold=False):
+def insert_item(item):
 
   sql = """
-  INSERT INTO items (barcode, name, notes, sold)
-  VALUES (%s, %s, %s, %s)
+  INSERT INTO items (barcode, name, notes)
+  VALUES (%s, %s, %s)
   """
-  values = (barcode, name, notes, sold)
+  values = (item['barcode'], item['name'], item['value'])
   mycursor.execute(sql, values)
   mydb.commit()
   print(f'|DB| added {name} to db')
+
 
 # finds item
 def lookup_item(barcode):
@@ -50,6 +51,8 @@ def lookup_item(barcode):
 
 
   return myresult
+
+
 # return all items
 def all_items():
 
@@ -58,6 +61,10 @@ def all_items():
   myresult = mycursor.fetchall()
 
   return myresult
+
+def update_item():
+  print('upadte duebug')
+
 # deletes item by barcode
 def delete_item(barcode):
 

@@ -1,11 +1,9 @@
 # app.py 
-# applaction loop will be written here
+# endpoints for API
 import db
+import barcode
 from flask import Flask
-from flask import render_template
-
-# main.py
-# Import necessary modules from the Flask framework
+# from flask import render_template
 from flask import Flask, jsonify, request
 
 # Create an instance of the Flask class. 
@@ -23,8 +21,17 @@ app = Flask(__name__)
 def index():
     return jsonify({'message': 'Welcome to the Flask REST API!'})
 
-    # Endpoint to retrieve the list of all items.
+# Create a new item.
+@app.route('/items', methods=['POST'])
+def create_item():
+    # request.json contains the JSON data sent with the POST request.
+    item_data = request.json
+    db.insert_item(item_data)
 
+    # Return a JSON response with the newly created item and a 201 status code (Created).
+    return jsonify({'item': item_data}), 201
+
+#Retrieve the list of all items.
 @app.route('/items', methods=['GET'])
 def get_items():
 
@@ -32,14 +39,17 @@ def get_items():
     return jsonify({'items': db.all_items()})
 
 # GET a single item by ID
-@app.route('/items/<string:item_id>', methods=['GET'])
+@app.route('/items/<int:item_id>', methods=['GET'])
 def get_item(item_id):
     # Endpoint to retrieve a single item by its ID.
     return jsonify({'item': db.lookup_item(item_id)})
 
+# Update an existing item by ID
+@app.route('/items/<int:item_id>', methods=['PUT'])
+def update_item(item_id):
+    db.update_item(item_id)
 
-
-# DELETE a item
+# DELETE a item by ID
 @app.route('/items/<int:item_id>', methods=['DELETE'])
 def delete_item(item_id):
     db.delete_item(item_id)
@@ -47,9 +57,14 @@ def delete_item(item_id):
     return jsonify({'result': True, 'message': f'item with ID {item_id} has been deleted.'})
 
 # print lable for item
-@app.route('/print<int:item_id>', methods=['GET'])
-def index():
-    return jsonify({'message': 'Printed'})
+@app.route('/print/<int:item_id>', methods=['GET'])
+def print(item_id):
+    item = db.lookup_item(item_id)
+    # pick first item in list (aka 0th)
+    barcode_var = item[0]['barcode']
+    name = item[0]['name']
+    barcode.print_barcode(barcode_var,name)
+    return jsonify({'msg':'printed'})
 
 
 
