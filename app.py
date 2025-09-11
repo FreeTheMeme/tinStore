@@ -1,11 +1,9 @@
 # app.py 
 # applaction loop will be written here
 import db
+import barcode
 from flask import Flask
-from flask import render_template
-
-# main.py
-# Import necessary modules from the Flask framework
+# from flask import render_template
 from flask import Flask, jsonify, request
 
 # Create an instance of the Flask class. 
@@ -41,7 +39,7 @@ def get_items():
     return jsonify({'items': db.all_items()})
 
 # GET a single item by ID
-@app.route('/items/<string:item_id>', methods=['GET'])
+@app.route('/items/<int:item_id>', methods=['GET'])
 def get_item(item_id):
     # Endpoint to retrieve a single item by its ID.
     return jsonify({'item': db.lookup_item(item_id)})
@@ -55,10 +53,15 @@ def delete_item(item_id):
 
     return jsonify({'result': True, 'message': f'item with ID {item_id} has been deleted.'})
 
-# # print lable for item
-# @app.route('/print<int:item_id>', methods=['GET'])
-# def index():
-#     return jsonify({'message': 'Printed'})
+# print lable for item
+@app.route('/print/<int:item_id>', methods=['GET'])
+def print(item_id):
+    item = db.lookup_item(item_id)
+    # pick first item in list (aka 0th)
+    barcode_var = item[0]['barcode']
+    name = item[0]['name']
+    barcode.print_barcode(barcode_var,name)
+    return jsonify({'msg':'printed'})
 
 
 
