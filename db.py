@@ -62,6 +62,8 @@ def all_items():
 
   return myresult
 
+def update_item():
+  print('upadte duebug')
 
 # deletes item by barcode
 def delete_item(barcode):

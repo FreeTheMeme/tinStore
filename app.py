@@ -1,5 +1,5 @@
 # app.py 
-# applaction loop will be written here
+# endpoints for API
 import db
 import barcode
 from flask import Flask
@@ -44,9 +44,12 @@ def get_item(item_id):
     # Endpoint to retrieve a single item by its ID.
     return jsonify({'item': db.lookup_item(item_id)})
 
+# Update an existing item by ID
+@app.route('/items/<int:item_id>', methods=['PUT'])
+def update_item(item_id):
+    db.update_item(item_id)
 
-
-# DELETE a item
+# DELETE a item by ID
 @app.route('/items/<int:item_id>', methods=['DELETE'])
 def delete_item(item_id):
     db.delete_item(item_id)
