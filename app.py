@@ -25,11 +25,14 @@ def index():
 @app.route('/items', methods=['POST'])
 def create_item():
     # request.json contains the JSON data sent with the POST request.
-    item_data = request.json
+    print(f"Request: {request.form}")
+    item_data = jsonify(request.form).json
+    print(f"Item data: {item_data}")
     db.insert_item(item_data)
+    return "OK"
 
     # Return a JSON response with the newly created item and a 201 status code (Created).
-    return jsonify({'item': item_data}), 201
+    #return jsonify({'item': item_data}), 201
 
 #Retrieve the list of all items.
 @app.route('/items', methods=['GET'])
@@ -45,7 +48,7 @@ def get_item(item_id):
     return jsonify({'item': db.lookup_item(item_id)})
 
 # Update an existing item by ID
-@app.route('/items/<int:item_id>', methods=['PUT'])
+@app.route('/items/<int:item_id>', methods=['POST'])
 def update_item(item_id):
     db.update_item(item_id)
 
@@ -56,15 +59,15 @@ def delete_item(item_id):
 
     return jsonify({'result': True, 'message': f'item with ID {item_id} has been deleted.'})
 
-# print lable for item
-@app.route('/print/<int:item_id>', methods=['GET'])
-def print(item_id):
-    item = db.lookup_item(item_id)
-    # pick first item in list (aka 0th)
-    barcode_var = item[0]['barcode']
-    name = item[0]['name']
-    barcode.print_barcode(barcode_var,name)
-    return jsonify({'msg':'printed'})
+# # print lable for item
+# @app.route('/print/<int:item_id>', methods=['GET'])
+# def print(item_id):
+#     item = db.lookup_item(item_id)
+#     # pick first item in list (aka 0th)
+#     barcode_var = item[0]['barcode']
+#     name = item[0]['name']
+#     barcode.print_barcode(barcode_var,name)
+#     return jsonify({'msg':'printed'})
 
 
 
@@ -75,4 +78,4 @@ if __name__ == '__main__':
     # app.run() starts the Flask development server.
     # debug=True enables debug mode, which provides helpful error messages
     # and automatically reloads the server when you make changes.
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

@@ -1,4 +1,5 @@
-CREATE DATABASE [IF NOT EXISTS] tinstore;
+CREATE DATABASE tinstore;
+USE tinstore;
 CREATE TABLE items (
     barcode INT NOT NULL,
     name VARCHAR(255) NOT NULL,
@@ -9,10 +10,7 @@ CREATE TABLE items (
     PRIMARY KEY (barcode)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE users (
-    username VARCHAR(50) NOT NULL,
-    password_hash VARCHAR(255) NOT NULL,
-    PRIMARY KEY (username
+
 -- testing
 INSERT INTO items (barcode, name, date_added, notes, value, sold) VALUES
 (1001, 'Laptop', '2025-08-15 10:00:00', 'High-end gaming laptop.', 1500, FALSE),
@@ -28,3 +26,8 @@ INSERT INTO items (barcode, name, date_added, notes, value, sold) VALUES
 
 
     TRUNCATE items
+
+    CREATE TABLE users (
+    username VARCHAR(50) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    PRIMARY KEY (username)

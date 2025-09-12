@@ -1,7 +1,7 @@
 
 services:
   
-  db:
+  db-2:
     image: mysql
     restart: always
     environment:

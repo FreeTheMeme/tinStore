@@ -33,13 +33,14 @@ mycursor = mydb.cursor(dictionary=True)
 def insert_item(item):
 
   sql = """
-  INSERT INTO items (barcode, name, notes)
+  INSERT INTO items (barcode, name, value)
   VALUES (%s, %s, %s)
+  ON DUPLICATE KEY UPDATE name = %s, value = %s
   """
-  values = (item['barcode'], item['name'], item['value'])
+  values = (item['barcode'], item['name'], item['value'],item['name'], item['value'])
   mycursor.execute(sql, values)
   mydb.commit()
-  print(f'|DB| added {name} to db')
+  print(f'|DB| added {item} to db')
 
 
 # finds item
