@@ -1,11 +1,4 @@
 services:
-  tinstore:
-    image: tinstore
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    ports:
-      - 5002:5002
   db:
     image: mysql
     restart: always
@@ -13,3 +6,10 @@ services:
       MYSQL_ROOT_PASSWORD: example
     ports:
       - "3306:3306"  # Maps port 3306 on the host to port 3306 in the container
+  tinstore:
+    image: tinstore
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 5002:5002
