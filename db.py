@@ -21,9 +21,8 @@ import mysql.connector
     # password (hased)
 
 mydb = mysql.connector.connect(
-  host="127.0.0.1",
-  user="root",
-  password="example",
+  host="192.168.122.68",
+  user="bigtin",
   database="tinstore",
 )
 
@@ -57,7 +56,7 @@ def lookup_item(barcode):
 # return all items
 def all_items():
 
-  sql = "SELECT * FROM items"
+  sql = "SELECT * FROM items ORDER BY name"
   mycursor.execute(sql)
   myresult = mycursor.fetchall()
 
